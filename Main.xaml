@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1036,609" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1036,4225" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=System.Private.CoreLib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="58">
+    <scg:List x:TypeArguments="x:String" Capacity="33">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -31,10 +31,13 @@
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="49">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
       <AssemblyReference>Microsoft.CSharp</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
@@ -83,9 +86,16 @@
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="442,333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="802,4160" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="target_folder_contents" />
       <Variable x:TypeArguments="x:String" Name="target_folder" />
@@ -95,13 +105,13 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Init" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Init" sap:VirtualizedContainerService.HintSize="760,1375" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="target_folder_exists" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -120,7 +130,7 @@
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">
-            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">target_folder.Replace('\\', '/')</CSharpValue>
+            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">target_folder.Replace('/', '\\')</CSharpValue>
           </InArgument>
         </Assign.Value>
         <sap:WorkflowViewStateService.ViewState>
@@ -162,7 +172,7 @@
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="s:String[]">
-                  <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">Directory.GetFiles(target_folder)</CSharpValue>
+                  <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">Directory.GetFiles(target_folder, "*.pdf")</CSharpValue>
                 </InArgument>
               </Assign.Value>
             </Assign>
@@ -191,12 +201,290 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="400,113" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="760,2655" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="ui:Window" Name="adobe_window" />
+      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
+      <ui:KillProcess Process="{x:Null}" AppliesTo="All" ContinueOnError="True" DisplayName="Kill Acrobat Instances (COE)" sap:VirtualizedContainerService.HintSize="698,142" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="Acrobat.exe" />
+      <ui:OpenApplication Arguments="{x:Null}" TimeoutMS="{x:Null}" WorkingDirectory="{x:Null}" sap2010:Annotation.AnnotationText="This file location may need to be made relative depending on other run environments" DisplayName="Start Adobe Instance" FileName="C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe" sap:VirtualizedContainerService.HintSize="698,2351" sap2010:WorkflowViewState.IdRef="OpenApplication_1" Selector="&lt;wnd app='acrobat.exe' /&gt;">
+        <ui:OpenApplication.ApplicationWindow>
+          <OutArgument x:TypeArguments="ui:Window">
+            <CSharpReference x:TypeArguments="ui:Window" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">adobe_window</CSharpReference>
+          </OutArgument>
+        </ui:OpenApplication.ApplicationWindow>
+        <ui:OpenApplication.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="664,2202" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="item_output" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="Process All Files in Adobe Acrobat" sap:VirtualizedContainerService.HintSize="622,2112" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="586,1979" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="Open File and Print Menu" sap:VirtualizedContainerService.HintSize="544,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Open Command" sap:VirtualizedContainerService.HintSize="338,142" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="o" KeyModifiers="Ctrl">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="d2983847-df7a-4321-bcf5-f1f29cd4a71e">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="There is likely room to improve this selector with further exploration of the dynamic elements loaded into the window. IIRC, the adobe numbered window control tags are actually fairly consistent" ClickBeforeTyping="False" DeselectAfter="False" DisplayName="Submit File Path {item}" EmptyField="True" sap:VirtualizedContainerService.HintSize="338,216" sap2010:WorkflowViewState.IdRef="TypeInto_2">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="577394d5-fb5e-4b20-9db8-be485a9618a7" InformativeScreenshot="82b258e6da81fb8270f0e42f0a851a96" Selector="&lt;wnd app='acrobat.exe' cls='#32770' title='Open' /&gt;&lt;wnd ctrlid='1148' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:TypeInto.Target>
+                          <ui:TypeInto.Text>
+                            <InArgument x:TypeArguments="x:String">
+                              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">item.ToString()</CSharpValue>
+                            </InArgument>
+                          </ui:TypeInto.Text>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:TypeInto>
+                        <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Confirm Open Button" sap:VirtualizedContainerService.HintSize="338,164" sap2010:WorkflowViewState.IdRef="ClickImage_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:ClickImage.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:ClickImage.CursorPosition>
+                          <ui:ClickImage.Image>
+                            <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGMAAAAeCAYAAAA4h6CKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFDSURBVGhD7ZXRrYQgEEVfT/7YCLVQC7VQiz3YActFWRExeSG6zph7k5OsCG4yJzP8jeMYauZ5JjfSqjk4lcHck24ZwzCQC0EoQwgIZQgBoQwhIJQhBIQyhIDokmF9+u+cyZn2PoUgemQkEVNwJq+Z4Kb3CEGUyFgK7221blzU44Mt15SC6JBxWnRIyt1i447422Lvkl3XpG/k5G+tZ9w2/p7qNESPjMkFc3hXdgwKG5P3peJXovKIiyNvKfp6xtvv+ibqtyDv64zvnTIE1DaJ2nXFmiSgPnP8xq9AdMj4151RF7I4cyqTMvo4jBAUrpzx1fNBVOs+oIx+kpAt+05ZCul9cU2X7+tRxTF1J88V8goQyhACQhlCQF4kQzcIZQgBoQwhIJQhBKRbBnN9umSQ+2jVHDRlkGegDEFQhiAoQwxj+AALx1e2WKpHhgAAAABJRU5ErkJggg==" />
+                          </ui:ClickImage.Image>
+                          <ui:ClickImage.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="c0c7ee56-a771-426d-8ed9-af35e6b352c3" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:ClickImage.Target>
+                        </ui:ClickImage>
+                        <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Print Command" sap:VirtualizedContainerService.HintSize="338,142" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="p" KeyModifiers="Ctrl">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="d2983847-df7a-4321-bcf5-f1f29cd4a71e">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                      </Sequence>
+                      <Sequence DisplayName="Print in Orientation" sap:VirtualizedContainerService.HintSize="544,870" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Boolean" Name="landscape_selected" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Landscape' Option" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d089d53e-f009-4f28-b41e-822fab37f051" InformativeScreenshot="a989e0f8b3d2f1955384824511c208b9" Selector="&lt;wnd cls='Button' title='Landscape' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Confirm Print" sap:VirtualizedContainerService.HintSize="338,142" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="enter" KeyModifiers="None" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b993ec6a-049f-4fd1-bd30-ec46b49b4eb1" Selector="&lt;wnd cls='Button' title='Landscape' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <Assign sap:VirtualizedContainerService.HintSize="338,70" sap2010:WorkflowViewState.IdRef="Assign_5">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">
+                              <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">item_output</CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">item.ToString().Replace(".pdf", "_Landscape.pdf")</CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Output File Name (item_output}" EmptyField="True" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_3">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b4350660-56c0-48fe-bfd5-ed15bc3734f2" InformativeScreenshot="5eb13ec256dafd2627a552c7e6b98778" Selector="&lt;wnd app='acrobat.exe' cls='*' title='Save Print Output As' /&gt;&lt;wnd aaname='Explorer Pane' cls='*' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='*' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:TypeInto.Target>
+                          <ui:TypeInto.Text>
+                            <InArgument x:TypeArguments="x:String">
+                              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">item_output</CSharpValue>
+                            </InArgument>
+                          </ui:TypeInto.Text>
+                        </ui:TypeInto>
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Confirm Save" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="56c88bd3-e3c7-4f19-a543-0107c71f0170" InformativeScreenshot="fb203dde5d0b606dbb727bafa50c6c0c" Selector="&lt;wnd app='acrobat.exe' cls='*' title='Save Print Output As' /&gt;&lt;wnd ctrlid='*' title='*Save' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                      </Sequence>
+                      <Sequence DisplayName="Validate" sap:VirtualizedContainerService.HintSize="544,849" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Boolean" Name="item_output_exists" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:FileExistsX DisplayName="Confirm File Exists {item_output}" sap:VirtualizedContainerService.HintSize="482,142" sap2010:WorkflowViewState.IdRef="FileExistsX_1">
+                          <ui:FileExistsX.Exists>
+                            <OutArgument x:TypeArguments="x:Boolean">
+                              <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">item_output_exists</CSharpReference>
+                            </OutArgument>
+                          </ui:FileExistsX.Exists>
+                          <ui:FileExistsX.Path>
+                            <InArgument x:TypeArguments="x:String">
+                              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">item_output</CSharpValue>
+                            </InArgument>
+                          </ui:FileExistsX.Path>
+                        </ui:FileExistsX>
+                        <If DisplayName="If Successful {item_output_exists}" sap:VirtualizedContainerService.HintSize="482,545" sap2010:WorkflowViewState.IdRef="If_2">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">item_output_exists</CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence sap:VirtualizedContainerService.HintSize="400,191" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Success" sap:VirtualizedContainerService.HintSize="358,101" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
+                                <ui:LogMessage.Message>
+                                  <InArgument x:TypeArguments="x:Object">
+                                    <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">string.Format("Successfully processed [{0}]", item_output)</CSharpValue>
+                                  </InArgument>
+                                </ui:LogMessage.Message>
+                              </ui:LogMessage>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap:VirtualizedContainerService.HintSize="400,191" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Failure" sap:VirtualizedContainerService.HintSize="358,101" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error">
+                                <ui:LogMessage.Message>
+                                  <InArgument x:TypeArguments="x:Object">
+                                    <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">string.Format("Failed when validating [{0}]", item_output)</CSharpValue>
+                                  </InArgument>
+                                </ui:LogMessage.Message>
+                              </ui:LogMessage>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+                <ui:ForEach.Values>
+                  <InArgument x:TypeArguments="sc:IEnumerable">
+                    <CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">target_folder_contents</CSharpValue>
+                  </InArgument>
+                </ui:ForEach.Values>
+              </ui:ForEach>
+            </Sequence>
+          </ActivityAction>
+        </ui:OpenApplication.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:OpenApplication>
     </Sequence>
   </Sequence>
 </Activity>
